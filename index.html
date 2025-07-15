@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:url" content="">
+  <meta property="og:title" content="Portfolio">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:image" content="http://elwkdlsdjrhk.dothome.co.kr/img/썸네일/썸네일2.png"> -->
+  <meta property="og:description" content="yeeunkwak">
+  <meta property="og:site_name" content="Yeeun Portfolio">
+  <title>Yeeun UI Portfolio</title>
+
+  <!-- favicon -->
+  <link rel="icon" href="img/favicon/favicon-16x16.png">
+  
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><a href="index.html">Yeeun UI</a></div>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="game">GameUI</button>
+      <button class="tab-button" data-tab="webapp">Web/App</button>
+      <button class="tab-button" data-tab="contact">Contact</button>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="left-section">
+      <div class="profile">
+        <h1>곽예은 (Yeeun Kwak)</h1>
+        <!-- <h4>(Yeeun Kwak)</h4> -->
+        <p>UI/UX 개발자</p>
+        <div class="skills">
+          <h4>🎨 Skills</h4>
+          <img src="img/free-icon-figma-5968705.png" />
+          <img src="img/free-icon-xd-5968559.png" />
+          <img src="img/free-icon-photoshop-5968520.png" />
+          <img src="img/free-icon-illustrator-5968472.png" />
+          <img src="img/free-icon-html-5-732212.png" />
+          <img src="img/free-icon-css-3-732190.png" />
+          <img class="javascript" src="img/javascript.png" />
+          <img src="img/free-icon-unity-5969346.png" />
+        </div>
+        <div class="history">
+            <h4>📄 경력</h4>
+            <dl>
+              <dd>포스코DX 3개월(프리랜서)</dd>
+              <dd>IT 솔루션 기업 / 소프트웨어 개발 회사 2년</dd>
+              <dd>IT 기반 배달대행 시스템 개발 회사 1년</dd>
+              <dd>일본어 통역</dl>
+            </dl>
+        </div>
+          <div class="history">
+            <h4>📄자격증 & 교육</h4>
+            <dl>
+              <dd>게임개발 학습과정 수료</dd>
+              <dd>프론트엔드개발 학습과정 수료</dd>
+              <dd>멀티미디어콘텐츠제작전문가</dd>
+              <dd>정보기술자격(ITQ)파워포인트</dd>
+              <dd>JPT(600점)</dd>
+            </dl>
+          </div>
+      </div>
+    </div>
+    <div class="right-section" id="game">
+      <!-- 게임 디자인 섹션 -->
+      <div class="section-block">
+        <h4 class="section-title">🎮 게임 UI 디자인</h4>
+        <div class="thumb-group">
+          <div class="thumb" data-genre="Subculture" onclick="openModal('img/modal/서브컬쳐FPSUI.png')"><img src="img/work/project_neon.png" alt="Project NEON"></div>
+          <div class="thumb" data-genre="RPG" onclick="openModal('img/modal/RPGUI.png')"><img src="img/work/aetheria.png" alt="Aetheria"></div>
+          <div class="thumb" data-genre="SubcultureCard" onclick="openModal('img/modal/서브컬쳐(카드수집형)UI - 진행중.png')"><img src="img/work/SubcultureCard_Lobby1.png" alt="My Cozy Home"></div>
+          <div class="thumb" data-genre="Casual" onclick="openModal('img/modal/캐주얼UI.png')"><img src="img/work/Casual(UI).png" alt="Card UI"></div>
+          <div class="thumb" data-genre="FPS" onclick="openModal('img/modal/FPSUI.png')"><img src="img/work/flat_fps.png" alt="Flat FPS"></div>
+          <div class="thumb" data-genre="china_drawing"onclick="openModal('img/modal/china_icon.png')"><img src="img/work/china_icon.png" alt="China Defense"></div>
+        </div>
+      </div>
+      <!-- 게임 개발 섹션 -->
+      <div class="section-block">
+        <h4 class="section-title">🧪 게임 개발</h4>
+        <div class="thumb-group">
+          <div class="thumb" data-genre="VR" onclick="openModalWithVideo('img/modal/vr_ui.png','videos/demo_vr.mp4')"><img src="img/work/vr_ui.png" alt="VR UI"></div>
+          <div class="thumb" data-genre="TFT" onclick="openModalWithVideo('img/modal/tft_ui.png','videos/demo_vr.mp4')"><img src="img/work/tft_ui.png" alt="TFT Style"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-section" id="webapp" style="display:none;">
+      <!-- 게임 디자인 섹션 -->
+      <div class="section-block">
+        <h4 class="section-title">App</h4>
+        <div class="thumb-group">
+          <div class="thumb" data-genre="Kiwoom APP UI(개인작)" onclick="openModal('img/work/appUI/키움증권 영웅문-portfolio.png')"><img src="img/work/appUI/키움증권 영웅문.png" alt="Kiwoom"></div>
+          <div class="thumb" data-genre="SmartFarm APP UI(개인작)" onclick="openModal('img/work/appUI/야채팜-portfolio.png')"><img src="img/work/appUI/야채팜.png" alt="Vegetable farm"></div>
+          <div class="thumb" data-genre="전자송품장 APP UI" onclick="openModal('img/work/appUI/전자송품장-portfolio.png')"><img src="img/work/appUI/전자송품장.png" alt="Electronic invoice"></div>
+          <div class="thumb" data-genre="시장동향 Dashboard" onclick="openModal('img/work/dashboard/시장동향 대시보드-portfolio.png')"><img src="img/work/dashboard/시장동향 대시보드.png" alt="dashboard"></div>
+          <div class="thumb" data-genre="AI영상 자동인식 CCTV" onclick="openModal('img/work/dashboard/AI영상 자동인식 CCTV-portfolio.png')"><img src="img/work/dashboard/AI영상 자동인식 CCTV.png" alt="CCTV"></div>
+          <div class="thumb" data-genre="System management UI" onclick="openModal('img/work/dashboard/시스템관리 대시보드-portfolio.png')"><img src="img/work/dashboard/시스템관리 대시보드.png" alt="System management"></div>
+        </div>
+      </div>
+      <!-- 게임 개발 섹션 -->
+      <div class="section-block">
+        <h4 class="section-title">Web</h4>
+        <div class="thumb-group">
+          <div class="thumb web-thumb" data-genre="도매시장 통합홈페이지"><img src="img/work/web/도매시장 통합홈페이지-메인(반응형)1.png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="잡아바어플라이"><img src="img/work/web/잡아바어플라이 어학시험(반응형).png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="가락시장 전자송품장"><img src="img/work/web/가락시장 전자송품장_웹&앱(반응형).png" alt="web"></div>
+          <div class="thumb web-thumb web-online" data-genre="농산물 온라인도매시장"><img src="img/work/web/농산물 온라인도매시장.png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="도농인력중개플랫폼시안"><img src="img/work/web/도농인력중개플랫폼시안.png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="농업교육포털"><img src="img/work/web/농업교육포털.png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="청주시온라인도매시장"><img src="img/work/web/청주시온라인도매시장.png" alt="web"></div>
+          <div class="thumb web-thumb web-online" data-genre="축산수급종합정보플랫폼"><img src="img/work/web/축산수급종합정보플랫폼.png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="해외규격인증획득지원센터"><img src="img/work/web/해외규격인증획득지원센터.png" alt="web"></div>
+          <div class="thumb web-thumb" data-genre="행안부 청원시스템"><img src="img/work/web/행안부 청원시스템.png" alt="web"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-section" id="contact" style="display:none;">
+      <p>📧 Email: yeeunkwakui@gmail.com</p>
+    </div>
+
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <img id="modal-image" src="" alt="modal view">
+    </div>
+  </div>
+  <button class="close-btn" onclick="closeModal()">×</button>
+
+  <footer>
+    <p>© 2025 Yeeun UI. All Rights Reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

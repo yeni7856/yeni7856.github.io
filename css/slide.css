@@ -1,0 +1,328 @@
+/* 바디 스크롤 */
+.scroll_hidden {
+  overflow-y: hidden;
+}
+
+/* 갤러리 썸네일들 */
+.box__gallery,.box__gallery1{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* //슬라이드 팝업창 */
+  .slide-overlay,.slide-overlay1,.slide-over1,.slide-over2,.slide-over3,.slide-dash1,.slide-dash2,.slide-dash3{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 2, 27, 0.555);
+    backdrop-filter: blur(5px);
+    display: none;
+  }
+  .slide-over1,.slide-over2,.slide-over3,.slide-dash1,.slide-dash2,.slide-dash3{
+    overflow: auto;
+  }
+  .slide__container{
+    position: absolute;
+    width: 85rem;
+    height: 41rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+  .slide__container1 {
+    position: absolute;
+    width: 80rem;
+    height: 523rem;
+    top: 450%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+  .slides,.slides1{
+    /* width:1000px; */
+    position: relative;
+    left: 0;
+    /* width: 100%; */
+  }
+  .slides::after,.slides1::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .slides li,.slides1 li{
+    float: left;
+    /* padding: 28px; */
+  }
+  .slides img,.slides1 img{
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  #img-11{
+    width: 78%;
+    margin: 0 auto;
+    display: block;
+  }
+  #img-4{
+    width: 67%;
+    margin: 0 auto;
+    display: block;
+  }
+  .slide__container1-1 ul{
+    width: 85%;
+    margin: 10% auto;
+}
+.slide__container1-1 img{
+  width: 100%;
+    display: block;
+}
+  /* 슬라이드 버튼 */
+  #prev_btn {
+    left: 1rem;
+}
+  .slide-btn,.slide-btn1{
+    padding: 1.5rem;
+    border: none;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 91%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.616);
+    border-radius: 50%;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    opacity: 0.5;
+}
+.slide-btn:hover,.slide-btn1:hover{
+    background: rgb(255, 255, 255);
+    opacity: 0.8;
+}
+.--prev,.--prev1{
+    left: 34%;
+  }
+  .--next,.--next1 {
+    right: 34%;
+  }
+  .material-icons::before,.material-icons2::before{
+    content: "<";
+    font-family: 'ONE-Mobile-Title';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px;
+    display: inline-block;
+    position: absolute;
+    top: 9px;
+    left: 16px;
+  }
+  .material-icons1::before,.material-icons3::before{
+    content: ">";
+    font-family: 'ONE-Mobile-Title';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px;
+    display: inline-block;
+    position: absolute;
+    top: 9px;
+    right: 16px;
+  }
+
+  /* 닫기버튼 */
+  .close-btn,.close-btn2{
+    position: absolute;
+    padding: 1em;
+    top: 5em;
+    right: 15%;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: rgb(156, 156, 156);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  .close-btn1{
+    position: sticky;
+    padding: 1em;
+    top: 4em;
+    left: 125em;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+  .close-btn-icon::before,.close-btn-icon1::before{
+    content: "X";
+    font-family: 'Pretendard-Regular';
+    font-weight: bold;
+    font-size: 22px;
+    display: inline-block;
+    position: absolute;
+    top: 6.5px;
+    right: 13px;
+  }
+  .close-btn:hover,.close-btn1:hover{
+    background: rgb(255, 255, 255);
+    opacity: 0.9;
+  }
+  /* bullet */
+  #bullets {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #bullets > li {
+    float: left;
+    margin: 4px 6px;
+  }
+  #bullets > li > a {
+    display: block;
+    text-decoration: none;
+    color: transparent;
+    width: 1em;
+    height: 1em;
+    background-color: rgb(148, 148, 148);
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+  #bullets > li > a.on {
+    background: rgb(228, 58, 101);
+  }
+
+  @media screen and (max-width: 1900px) {
+    /* .--prev {
+        left: 5%;
+      }
+      .--next {
+        right: 5%;
+      } */
+
+  }
+  @media screen and (max-width: 1800px) {
+    .slide__container {
+        width: 84rem;
+        height: 40rem;
+    }
+    .slide-btn {
+        top: 89%;
+    }
+    .--prev {
+        left: 30%;
+      }
+      .--next {
+        right: 30%;
+      }
+      .close-btn1{
+        left:110em;
+    }
+  }
+  @media screen and (max-width: 1600px) {
+
+      .close-btn1{
+        left:100em;
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    .slide__container {
+        width: 70rem;
+        height: 33rem;
+      }
+      .close-btn1{
+        left:85em;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .slide__container {
+        width: 60rem;
+        height: 28rem;
+      }
+      .--prev {
+        left: 20%;
+      }
+      .--next {
+        right: 20%;
+      }
+      .close-btn1{
+        left:75em;
+    }
+  }
+@media screen and (max-width: 1024px) {
+  .slide__container {
+      width: 48rem;
+      height: 23rem;
+    }
+    .slide-btn {
+      top: 75%;
+  }
+    .--prev {
+      left: 15%;
+    }
+    .--next {
+      right: 15%;
+    }
+    .close-btn {
+      top: 10em;
+  }
+  #bullets {
+    bottom: 24%;
+  }
+  .close-btn1{
+    left: 64em;
+}
+}
+/* mobile-size */
+@media screen and (max-width: 780px) {
+  .slide__container {
+    width: 30rem;
+    height: 14rem;
+}
+      .slide-btn {
+            top: 71%;
+        }
+        .--prev {
+            left: 8%;
+        }
+        .--next {
+            right: 8%;
+        }
+        #bullets > li > a {
+            width: 0.6em;
+            height: 0.6em;
+          }
+          #bullets {
+            bottom: 28%;
+          }
+          .slide__container1-1 ul {
+            width: 100%;
+            margin: 10% auto;
+        }
+        .close-btn1{
+          top: 3em;
+          left:60em;
+      }
+      .slide-overlay{
+        background: rgb(0 2 27);
+     
+      }
+
+}
