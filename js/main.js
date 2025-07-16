@@ -43,7 +43,7 @@ function openModalWithVideo(warningText, videoSrc, imageSrc, extraImg) {
   video.src = videoSrc;
   video.controls = true;
   video.style.display = 'none';
-  video.className = 'real-video';
+  video.className = 'real-video-1';
   playerWrapper.appendChild(video);
 
   //클릭 시: 썸네일 & 아이콘 숨기고 영상 재생
