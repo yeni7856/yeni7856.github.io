@@ -12,15 +12,30 @@
   <title>Yeeun UI Portfolio</title>
 
   <!-- favicon -->
-  <link rel="icon" href="img/favicon/favicon-16x16.png">
+  <link rel="icon" href="img/favicon/favicon-1.png">
   
   <!-- css -->
   <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- scripts -->
+  <!-- <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ko',
+        includedLanguages: 'en,ja,ko',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script> -->
 </head>
 <body>
+  <!-- 해더 -->
   <header>
     <div class="logo"><a href="index.html">Yeeun UI</a></div>
+    <!-- <div id="google_translate_element"></div> -->
     <div class="tabs">
       <button class="tab-button active" data-tab="game">GameUI</button>
       <button class="tab-button" data-tab="webapp">Web/App</button>
@@ -28,12 +43,13 @@
     </div>
   </header>
 
+<!-- 메인 컨테이너 -->
   <div class="main-container">
+    <!-- left-section -->
     <div class="left-section">
       <div class="profile">
         <h1>곽예은 (Yeeun Kwak)</h1>
-        <!-- <h4>(Yeeun Kwak)</h4> -->
-        <p>UI/UX 개발자</p>
+        <p>UI/UX</p>
         <div class="skills">
           <h4>🎨 Skills</h4>
           <img src="img/free-icon-figma-5968705.png" />
@@ -48,14 +64,14 @@
         <div class="history">
             <h4>📄 경력</h4>
             <dl>
-              <dd>포스코DX 3개월(프리랜서)</dd>
+              <dd>포스코DX 1개월(프리랜서)</dd>
               <dd>IT 솔루션 기업 / 소프트웨어 개발 회사 2년</dd>
               <dd>IT 기반 배달대행 시스템 개발 회사 1년</dd>
-              <dd>일본어 통역</dl>
+              <dd>일본어 통역 1년</dd>
             </dl>
         </div>
           <div class="history">
-            <h4>📄자격증 & 교육</h4>
+            <h4>📄 자격증 & 교육</h4>
             <dl>
               <dd>게임개발 학습과정 수료</dd>
               <dd>프론트엔드개발 학습과정 수료</dd>
@@ -66,6 +82,8 @@
           </div>
       </div>
     </div>
+    <!-- right-section -->
+     <!-- game -->
     <div class="right-section" id="game">
       <!-- 게임 디자인 섹션 -->
       <div class="section-block">
@@ -76,21 +94,21 @@
           <div class="thumb" data-genre="SubcultureCard" onclick="openModal('img/modal/서브컬쳐(카드수집형)UI - 진행중.png')"><img src="img/work/SubcultureCard_Lobby1.png" alt="My Cozy Home"></div>
           <div class="thumb" data-genre="Casual" onclick="openModal('img/modal/캐주얼UI.png')"><img src="img/work/Casual(UI).png" alt="Card UI"></div>
           <div class="thumb" data-genre="FPS" onclick="openModal('img/modal/FPSUI.png')"><img src="img/work/flat_fps.png" alt="Flat FPS"></div>
-          <div class="thumb" data-genre="china_drawing"onclick="openModal('img/modal/china_icon.png')"><img src="img/work/china_icon.png" alt="China Defense"></div>
+          <!-- <div class="thumb" data-genre="china_drawing"onclick="openModal('')"><img src="" alt="China Defense"></div> -->
         </div>
       </div>
       <!-- 게임 개발 섹션 -->
       <div class="section-block">
         <h4 class="section-title">🧪 게임 개발</h4>
         <div class="thumb-group">
-          <div class="thumb" data-genre="VR" onclick="openModalWithVideo('img/modal/vr_ui.png','videos/demo_vr.mp4')"><img src="img/work/vr_ui.png" alt="VR UI"></div>
-          <div class="thumb" data-genre="TFT" onclick="openModalWithVideo('img/modal/tft_ui.png','videos/demo_vr.mp4')"><img src="img/work/tft_ui.png" alt="TFT Style"></div>
+          <div class="thumb" data-genre="VR개발 팀프로젝트" onclick="openModalWithVideo('아래 비디오는 VR(오큘러스)로 시연한 영상이며 다소 흔들릴 수 있습니다.<br>개발영역 : Unity XR Origin(플레이어), XR UI','img/work/dev/귀도행 시연영상.mp4','img/work/dev/귀도행VR개발.png','img/work/dev/귀도행.png')"><img src="img/work/dev/귀도행.png" alt="VR Dev"></div>
+          <div class="thumb" data-genre="전략적 자동전투 게임 (개인프로젝트)" onclick="openModalWithTwoVideos('전략적 자동전투 게임(캐릭터 UI 랜덤,캐릭터 선택 및 배치)','img/work/dev/Movie_002.mp4','전략적 자동전투 게임(캐릭터 적감지 공격)','img/work/dev/Movie_001.mp4','img/work/dev/StratEdge_자동 전투 전략 게임.png')"><img src="img/work/dev/Image Sequence.png" alt="VR Dev"></div>
         </div>
       </div>
     </div>
-
+    <!-- webapp -->
     <div class="right-section" id="webapp" style="display:none;">
-      <!-- 게임 디자인 섹션 -->
+      <!-- 앱 & 대시보드 디자인 섹션 -->
       <div class="section-block">
         <h4 class="section-title">App</h4>
         <div class="thumb-group">
@@ -102,7 +120,7 @@
           <div class="thumb" data-genre="System management UI" onclick="openModal('img/work/dashboard/시스템관리 대시보드-portfolio.png')"><img src="img/work/dashboard/시스템관리 대시보드.png" alt="System management"></div>
         </div>
       </div>
-      <!-- 게임 개발 섹션 -->
+      <!-- 웹 디자인 섹션 -->
       <div class="section-block">
         <h4 class="section-title">Web</h4>
         <div class="thumb-group">
@@ -119,24 +137,24 @@
         </div>
       </div>
     </div>
-
+    <!-- contact -->
     <div class="right-section" id="contact" style="display:none;">
       <p>📧 Email: yeeunkwakui@gmail.com</p>
     </div>
 
   </div>
-
+<!-- modal -->
   <div class="modal" id="modal">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-content">
       <img id="modal-image" src="" alt="modal view">
     </div>
   </div>
   <button class="close-btn" onclick="closeModal()">×</button>
-
+<!-- footer -->
   <footer>
     <p>© 2025 Yeeun UI. All Rights Reserved.</p>
   </footer>
-
+  <!-- script -->
   <script src="js/main.js"></script>
 </body>
 </html>
