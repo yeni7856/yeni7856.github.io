@@ -87,6 +87,7 @@ a{text-decoration:none;color: #111;}
 .contact{border: 1px solid #ddd; padding: 20px;line-height: 1.6rem;}
 .contact span{font-family: "ONE-Mobile-Title", sans-serif;font-weight: 300;font-size: 18px;}
 .artstation{width: 16px; margin-right: 5px;}
+.art {font-weight: bold;}
 footer { padding: 10px 20px; font-size: 12px; text-align: center; background: #f5f5f5; }
 
 /* 모달 */
