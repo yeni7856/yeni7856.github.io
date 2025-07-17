@@ -199,3 +199,61 @@ tabButtons.forEach(button => {
     // alert(`"${tab}" 탭은 현재 준비 중입니다 :)`);
   });
 });
+
+// 인터렉션
+window.addEventListener('DOMContentLoaded', () => {
+  // 좌우 섹션 초기 등장
+  document.querySelector('.left-section')?.classList.add('show');
+  document.querySelector('.right-section')?.classList.add('show');
+
+  // thumb 초기 애니메이션
+  animateThumbs(document.querySelector('#game'));
+
+  // skills, history 애니메이션 (IntersectionObserver)
+  const revealElements = document.querySelectorAll('.skills img, .history');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealElements.forEach((el) => {
+    el.classList.add('reveal-up');
+    observer.observe(el);
+  });
+
+  // 탭 버튼 이벤트
+  document.querySelectorAll('.tab-button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+
+      document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.right-section').forEach(section => {
+        section.style.display = section.id === target ? 'block' : 'none';
+      });
+
+      // 새 탭의 thumb들 등장 애니메이션 적용
+      const newSection = document.querySelector(`#${target}`);
+      if (newSection) {
+        newSection.classList.add('show');
+        animateThumbs(newSection);
+      }
+    });
+  });
+});
+
+function animateThumbs(container) {
+  const thumbs = container.querySelectorAll('.thumb');
+  thumbs.forEach((thumb, index) => {
+    thumb.classList.remove('show'); // 혹시 몰라 초기화
+    setTimeout(() => {
+      thumb.classList.add('show');
+    }, index * 100);
+  });
+}

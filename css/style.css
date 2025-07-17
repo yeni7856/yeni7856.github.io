@@ -86,6 +86,7 @@ a{text-decoration:none;color: #111;}
 
 .contact{border: 1px solid #ddd; padding: 20px;line-height: 1.6rem;}
 .contact span{font-family: "ONE-Mobile-Title", sans-serif;font-weight: 300;font-size: 18px;}
+.artstation{width: 16px; margin-right: 5px;}
 footer { padding: 10px 20px; font-size: 12px; text-align: center; background: #f5f5f5; }
 
 /* 모달 */
@@ -207,4 +208,48 @@ border-radius: 4px;
   .thumb { max-width: none;width:100%}
   .skills,.history{width: 100%;padding: 5px 0;}
   .contact{text-align: center;margin: 10px auto;}
+}
+
+
+/* 인터렉션 */
+.left-section, .right-section {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s ease;
+}
+
+.left-section.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.right-section {
+  transform: translateX(100px);
+}
+
+.right-section.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 썸네일 애니메이션 */
+.thumb {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+.thumb.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* skills, history용 */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease-out;
+}
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
