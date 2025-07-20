@@ -1,8 +1,13 @@
 function openModal(imgSrc) {
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-image");
+  modalImg.onload = () => {
+    modal.classList.add("show");
+  };
+  modalImg.onerror = () => {
+    alert("이미지를 불러올 수 없습니다: " + imgSrc);
+  };
   modalImg.src = imgSrc;
-  modal.classList.add("show");
   document.querySelector(".close-btn").style.display = "flex";
   document.body.classList.add("scroll_hidden");
 }
@@ -64,8 +69,11 @@ function openModalWithVideo(warningText, videoSrc, imageSrc, extraImg) {
     img.className = "modal-extra-image";
     modalContent.appendChild(img);
   }
+// 로딩 후 딜레이
+  setTimeout(() => {
+    modal.classList.add("show");
+  },100);
 
-  modal.classList.add("show");
   document.querySelector(".close-btn").style.display = "flex";
   document.body.classList.add("scroll_hidden");
 }
@@ -115,8 +123,12 @@ function openModalWithTwoVideos(text1, videoSrc1, text2, videoSrc2, imageSrc) {
     img.className = "modal-extra-image";
     modalContent.appendChild(img);
   }
+// 로딩 후 딜레이
+  setTimeout(() => {
+    modal.classList.add("show");
+  },100);
 
-  modal.classList.add("show");
+  // modal.classList.add("show");
   document.querySelector(".close-btn").style.display = "flex";
   document.body.classList.add("scroll_hidden");
 }
@@ -164,19 +176,24 @@ function openModalWithTwoVideos(text1, videoSrc1, text2, videoSrc2, imageSrc) {
 
 function closeModal() {
   const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modal-content");
 
   //영상 멈추기 + 리셋
   const videos = modal.querySelectorAll('video');
   videos.forEach(video => {
     video.pause();
     video.currentTime = 0;
-    video.remove();
   });
+
+  //modalContent는 완전히 초기화
+  modalContent.innerHTML = `
+    <img id="modal-image" src="" alt="modal image">
+  `;
 
   modal.classList.remove("show");
   document.querySelector(".close-btn").style.display = "none";
   document.body.classList.remove("scroll_hidden");
-}
+} 
 
 
 // 탭 전환 기능

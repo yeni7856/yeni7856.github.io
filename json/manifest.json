@@ -1,0 +1,20 @@
+{
+  "name": "Yeeun Portfolio",
+  "short_name": "YeeunUI",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "../img/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "../img/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
