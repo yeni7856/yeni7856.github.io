@@ -37,6 +37,21 @@
   </script> -->
 </head>
 <body>
+   <!-- intro -->
+  <!-- <section class="intro">
+    <div class="bg-svg">
+      <img src="곽예은_Portfolio_표지1.png" alt="Background Art" />
+    </div>
+    <div class="intro-content">
+      <h1>UIUX : Portfolio</h1>
+      <h2>Yeeun Kwak</h2>
+      <p>UI/UX 디자이너로서 사용자의 몰입과 피드백 흐름을 중심으로 고민하며,<br>경험의 중심에 UI를 두는 디자인을 추구합니다.</p>
+      <div class="contact-info">
+        <p>Email : yeeunkwakui@gmail.com</p>
+        <p>Portfolio-Site : <a href="https://yeni7856.github.io/">https://yeni7856.github.io/</a></p>
+      </div>
+    </div>
+  </section> -->
   <!-- 해더 -->
   <header>
     <div class="logo"><a href="index.html">Yeeun UI</a></div>
@@ -44,7 +59,7 @@
     <div class="tabs">
       <button class="tab-button active" data-tab="game">GameUI</button>
       <button class="tab-button" data-tab="webapp">Web/App</button>
-      <button class="tab-button" data-tab="contact">Contact</button>
+      <button class="tab-button" data-tab="about">About</button>
     </div>
   </header>
 
@@ -55,6 +70,9 @@
       <div class="profile">
         <h1>곽예은 (Yeeun Kwak)</h1>
         <p>UI/UX</p>
+        <div class="pdf-download">
+          <a href="pdf/곽예은_GameUIUX포트폴리오.pdf" download="곽예은_GameUIUX_포트폴리오.pdf">📑 포트폴리오 PDF 다운로드</a>
+        </div>
         <div class="skills">
           <h4>🎨 Skills</h4>
           <img src="img/free-icon-figma-5968705.png" />
@@ -68,28 +86,15 @@
           <img class="javascript" src="img/javascript.png" />
           <img src="img/free-icon-unity-5969346.png" />
         </div>
-        <div class="history">
-            <h4>📄 경력</h4>
-            <dl>
-              <dd>포스코DX 1개월(프리랜서)</dd>
-              <dd>IT 솔루션 기업 / 소프트웨어 개발 회사 2년</dd>
-              <dd>IT 기반 배달대행 시스템 개발 회사 1년</dd>
-              <dd>일본어 통역 1년</dd>
-            </dl>
-        </div>
+        
           <div class="history">
-            <h4>📄 자격증 & 교육</h4>
-            <dl>
-              <dd>게임개발 학습과정 수료</dd>
-              <dd>프론트엔드개발 학습과정 수료</dd>
-              <dd>멀티미디어콘텐츠제작전문가</dd>
-              <dd>정보기술자격(ITQ)파워포인트</dd>
-              <dd>JPT(600점)</dd>
-            </dl>
+            <br>
+            <p><img class="artstation" src="img/artrstation.svg"><a href="https://www.artstation.com/yenikwak ">Artstation</a></p>
+            <br>
+            <p>📧 Email : yeeunkwakui@gmail.com</p>
+            <br>
+            <p id="lastUpdated">Last Updated: ...</p>
           </div>
-          <div class="history">
-            <p><img class="artstation" src="img/artrstation.svg"><a href="https://www.artstation.com/yenikwak " class="art">Artstation</a></p>
-        </div>
       </div>
     </div>
     <!-- right-section -->
@@ -100,7 +105,7 @@
         <h4 class="section-title">🎮 게임 UI 디자인</h4>
         <div class="thumb-group">
           <div class="thumb" data-genre="Subculture" onclick="openModal('img/modal/서브컬쳐FPSUI.png')"><img src="img/work/project_neon.png" alt="Project NEON"></div>
-          <div class="thumb" data-genre="RPG" onclick="openModal('img/modal/RPGUI.png')"><img src="img/work/aetheria.png" alt="Aetheria"></div>
+          <div class="thumb" data-genre="RPG" onclick="openModal('img/modal/RPGUI_2.png')"><img src="img/work/aetheria.png" alt="Aetheria"></div>
           <div class="thumb" data-genre="SubcultureCard" onclick="openModal('img/modal/서브컬쳐(카드수집형)UI - 진행중.png')"><img src="img/work/SubcultureCard_Lobby1.png" alt="My Cozy Home"></div>
           <div class="thumb" data-genre="Casual" onclick="openModal('img/modal/캐주얼UI.png')"><img src="img/work/Casual(UI).png" alt="Card UI"></div>
           <div class="thumb" data-genre="FPS" onclick="openModal('img/modal/FPSUI.png')"><img src="img/work/flat_fps.png" alt="Flat FPS"></div>
@@ -147,9 +152,9 @@
         </div>
       </div>
     </div>
-    <!-- contact -->
-    <div class="right-section" id="contact" style="display:none;">
-      <div class="contact">
+    <!-- about -->
+    <div class="right-section" id="about" style="display:none;">
+      <div class="about">
         <!-- <p>
           <span>👋안녕하세요</span> 몰입도 높은 게임 경험을 위한 UI/UX를 설계하고자 성장 중인 디자이너 곽예은입니다.<br>
           웹·앱 기반 UI/UX 실무 경력 3년 차로, 기획 의도를 시각적으로 구현하고 퍼블리싱(HTML/CSS)까지 수행해왔습니다.<br>
@@ -176,10 +181,27 @@
           유연하게 협업할 수 있는 UI 디자이너로서 가치 있는 결과를 만들어가고자 합니다.
         </p>
         <br>
-        <p>📧 Email : yeeunkwakui@gmail.com</p>
+        <div class="history">
+            <h4>📄 경력</h4>
+            <dl>
+              <dd>포스코DX 1개월(프리랜서)</dd>
+              <dd>IT 솔루션 기업 / 소프트웨어 개발 회사 2년</dd>
+              <dd>IT 기반 배달대행 시스템 개발 회사 1년</dd>
+              <dd>일본어 통역 1년</dd>
+            </dl>
+        </div>
+          <div class="history">
+            <h4>📄 자격증 & 교육</h4>
+            <dl>
+              <dd>멀티미디어콘텐츠제작전문가</dd>
+              <dd>정보기술자격(ITQ)파워포인트</dd>
+              <dd>JPT(600점)</dd>
+              <dd>게임개발 학습과정 수료</dd>
+              <dd>프론트엔드개발 학습과정 수료</dd>
+            </dl>
+          </div>
      </div>
     </div>
-
   </div>
 <!-- modal -->
   <div class="modal" id="modal">
@@ -192,7 +214,27 @@
   <footer>
     <p>© 2025 Yeeun UI. All Rights Reserved.</p>
   </footer>
+  <!--  움직이는 SVG 배경 선 -->
+ <!-- <div class="bg-svg">
+  <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+    <path d="M0,400 C200,300 600,500 800,400" stroke="#00ffe1" stroke-width="0.5" fill="none"/>
+    <path d="M0,300 C250,200 550,600 800,300" stroke="#00ffe1" stroke-width="0.5" fill="none"/>
+    <path d="M0,500 C150,600 650,200 800,500" stroke="#00ffe1" stroke-width="0.5" fill="none"/>
+  </svg>
+</div> -->
   <!-- script -->
   <script src="js/main.js"></script>
+  <script>
+  const lastUpdated = document.getElementById("lastUpdated");
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+
+  lastUpdated.textContent = `Last Updated: ${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+</script>
 </body>
 </html>

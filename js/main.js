@@ -1,8 +1,10 @@
 function openModal(imgSrc) {
+
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-image");
   modalImg.onload = () => {
     modal.classList.add("show");
+    modal.scrollTop = 0; //스크롤 초기화
   };
   modalImg.onerror = () => {
     alert("이미지를 불러올 수 없습니다: " + imgSrc);
@@ -72,6 +74,7 @@ function openModalWithVideo(warningText, videoSrc, imageSrc, extraImg) {
 // 로딩 후 딜레이
   setTimeout(() => {
     modal.classList.add("show");
+    modal.scrollTop = 0; //스크롤 초기화
   },100);
 
   document.querySelector(".close-btn").style.display = "flex";
@@ -80,7 +83,7 @@ function openModalWithVideo(warningText, videoSrc, imageSrc, extraImg) {
 
 
   // 비디오 2개 삽입
-function openModalWithTwoVideos(text1, videoSrc1, text2, videoSrc2, imageSrc) {
+function openModalWithTwoVideos(text1, videoSrc1, text2, videoSrc2, imageSrc) {  
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modal-content");
   modalContent.innerHTML = ''; // 초기화
@@ -126,6 +129,7 @@ function openModalWithTwoVideos(text1, videoSrc1, text2, videoSrc2, imageSrc) {
 // 로딩 후 딜레이
   setTimeout(() => {
     modal.classList.add("show");
+    modal.scrollTop = 0; //스크롤 초기화
   },100);
 
   // modal.classList.add("show");
