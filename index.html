@@ -71,7 +71,7 @@
         <h1>곽예은 (Yeeun Kwak)</h1>
         <p>UI/UX</p>
         <div class="pdf-download">
-          <a href="pdf/곽예은_GameUIUX포트폴리오.pdf" download="곽예은_GameUIUX_포트폴리오.pdf">📑 포트폴리오 PDF 다운로드</a>
+          <a href="pdf/곽예은_GameUIUX포트폴리오.zip" download="곽예은_GameUIUX_포트폴리오">📑 포트폴리오 PDF 다운로드</a>
         </div>
         <div class="skills">
           <h4>🎨 Skills</h4>
@@ -93,7 +93,7 @@
             <br>
             <p>📧 Email : yeeunkwakui@gmail.com</p>
             <br>
-            <p id="lastUpdated">Last Updated: ...</p>
+            <p id="lastUpdated">Last Updated: <span id="last-build">...</span></p>
           </div>
       </div>
     </div>
@@ -166,7 +166,7 @@
           디자인을 실제 구현으로 연결하는 실무 감각과 기술적 이해를 확장하고 있습니다.<br>
           디자인과 기술을 함께 고민하며, 글로벌 게임 개발 환경에서도 유연하게 협업할 수 있는 디자이너로 성장하고자 합니다.
         </p> -->
-        <p>
+        <!-- <p>
           <span>👋 안녕하세요</span> 몰입도 높은 게임 경험을 위한 UI/UX를 설계하는 디자이너 곽예은입니다.<br>
           웹·앱 기반 UI/UX 실무 경력 3년 차로, 기획 의도를 시각적으로 구현하고 퍼블리싱(HTML/CSS)까지 수행해왔습니다.<br>
           게임에 대한 깊은 관심을 바탕으로 기획·디자인·개발 전반을 직접 경험하며,<br>
@@ -179,6 +179,18 @@
 
           디자인과 기술의 균형을 고민하며, 글로벌 게임 개발 환경에서도 <br>
           유연하게 협업할 수 있는 UI 디자이너로서 가치 있는 결과를 만들어가고자 합니다.
+        </p> -->
+        <p>
+          <span>👋 안녕하세요.</span> 몰입도 높은 경험을 위한 시각적 UI/UX를 설계하는 디자이너 곽예은입니다.<br>
+          3년간 UI/UX 디자이너로서 다양한 서비스의 화면 구조와 사용자 흐름을 설계해왔으며,<br>
+          정보 구조와 인터페이스를 시각적으로 정리하고, 기능과 감성을 담은 UI를 만들어왔습니다.<br>
+          기획 의도를 시각적으로 구현하고 퍼블리싱(HTML/CSS)까지 직접 수행한 경험도 보유하고 있습니다.<br>
+          최근에는 게임 UI에 매력을 느껴 Unity 기반 인터페이스 구현에도 도전하고 있습니다.<br><br>
+
+          UI를 단순한 시각 요소가 아닌, 시스템과 사용자를 연결하는 구조로 이해하며,<br>
+          감각적인 피드백과 몰입 흐름을 고려한 설계를 지향합니다.<br>
+          디자인과 기술의 균형을 고민하며,<br>
+          유연한 협업을 통해 가치 있는 결과를 만들어가는 디자이너가 되고자 합니다.
         </p>
         <br>
         <div class="history">
@@ -214,27 +226,27 @@
   <footer>
     <p>© 2025 Yeeun UI. All Rights Reserved.</p>
   </footer>
-  <!--  움직이는 SVG 배경 선 -->
- <!-- <div class="bg-svg">
-  <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
-    <path d="M0,400 C200,300 600,500 800,400" stroke="#00ffe1" stroke-width="0.5" fill="none"/>
-    <path d="M0,300 C250,200 550,600 800,300" stroke="#00ffe1" stroke-width="0.5" fill="none"/>
-    <path d="M0,500 C150,600 650,200 800,500" stroke="#00ffe1" stroke-width="0.5" fill="none"/>
-  </svg>
-</div> -->
-  <!-- script -->
-  <script src="js/main.js"></script>
-  <script>
-  const lastUpdated = document.getElementById("lastUpdated");
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  const hours = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-  const seconds = String(now.getSeconds()).padStart(2, "0");
 
-  lastUpdated.textContent = `Last Updated: ${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+  <!-- script -->
+  <script defer src="js/main.js"></script>
+  <script>
+fetch('js/build-time.json')
+  .then(res => res.json())
+  .then(data => {
+    const date = new Date(data.lastBuild);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    const formatted = `${year}.${month}.${day} ${hours}:${minutes}`;
+    document.getElementById('last-build').textContent = formatted;
+  })
+  .catch(err => {
+    console.error('❌ build-time.json 로드 실패', err);
+    document.getElementById('last-build').textContent = '정보 없음';
+  });
 </script>
 </body>
 </html>
