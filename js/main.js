@@ -16,7 +16,7 @@ function openModal(imgSrc) {
 
 
 //비디오 삽입
-function openModalWithVideo(warningText, videoSrc, imageSrc, extraImg) {
+function openModalWithVideo(warningText, videoSrc, imageSrc) {
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modal-content");
   modalContent.innerHTML = ''; // 초기화
@@ -27,42 +27,48 @@ function openModalWithVideo(warningText, videoSrc, imageSrc, extraImg) {
     warning.innerHTML = warningText;
     modalContent.appendChild(warning);
   }
+  
+  const video1 = document.createElement('video');
+  video1.src = videoSrc;
+  video1.controls = true;
+  video1.className = 'real-video';
+  modalContent.appendChild(video1);
 
   //유튜브 스타일 wrapper
-  const playerWrapper = document.createElement('div');
-  playerWrapper.className = 'youtube-style-player';
+  // const playerWrapper = document.createElement('div');
+  // playerWrapper.className = 'youtube-style-player';
 
   //썸네일 이미지 (extraImg)
-  const thumbnail = document.createElement('img');
-  thumbnail.className = 'video-poster';
-  thumbnail.src = extraImg;
-  thumbnail.alt = '썸네일';
-  playerWrapper.appendChild(thumbnail);
+  // const thumbnail = document.createElement('img');
+  // thumbnail.className = 'video-poster';
+  // thumbnail.src = extraImg;
+  // thumbnail.alt = '썸네일';
+  // playerWrapper.appendChild(thumbnail);
 
   //재생 아이콘
-  const playIcon = document.createElement('div');
-  playIcon.className = 'play-icon';
-  playIcon.innerHTML = '▶';
-  playerWrapper.appendChild(playIcon);
+  // const playIcon = document.createElement('div');
+  // playIcon.className = 'play-icon';
+  // playIcon.innerHTML = '▶';
+  // playerWrapper.appendChild(playIcon);
 
   //실제 영상 (초기 숨김)
-  const video = document.createElement('video');
-  video.src = videoSrc;
-  video.controls = true;
-  video.style.display = 'none';
-  video.className = 'real-video-1';
-  playerWrapper.appendChild(video);
+  // const video = document.createElement('video');
+  // video.src = videoSrc;
+  // video.controls = true;
+  // video.style.display = 'none';
+  // video.className = 'real-video-1';
+  // playerWrapper.appendChild(video);
 
   //클릭 시: 썸네일 & 아이콘 숨기고 영상 재생
-  playerWrapper.onclick = () => {
-  thumbnail.style.display = 'none';
-  playIcon.style.display = 'none';
-  video.style.display = 'block';
-  video.play();
-  };
+  // playerWrapper.onclick = () => {
+  // thumbnail.style.display = 'none';
+  // playIcon.style.display = 'none';
+  // video.style.display = 'block';
+  // video.play();
+  // };
 
   // 모달에 플레이어 삽입
-  modalContent.appendChild(playerWrapper);
+  // modalContent.appendChild(playerWrapper);
 
   if (imageSrc) {
     const img = document.createElement('img');
