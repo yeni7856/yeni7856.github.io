@@ -2,6 +2,7 @@
   "name": "yeeun-portfolio",
   "version": "1.0.0",
   "scripts": {
-    "build-time": "node js/build-time.js"
+    "build-time": "node js/build-time.js",
+    "build": "npm run build-time"
   }
 }
