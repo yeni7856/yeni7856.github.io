@@ -5,12 +5,12 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "../asstes/icon-192.png",
+      "src": "../assets/favicon/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "../asstes/icon-512.png",
+      "src": "../assets/favicon/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
