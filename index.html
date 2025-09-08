@@ -434,6 +434,12 @@
 
 <a href="#home" class="up-btn" aria-label="위로 가기">↑</a>
 
+<div class="xcursor" aria-hidden="true">
+  <span class="xcursor__dot"></span>
+  <span class="xcursor__ring"></span>
+   <span class="xcursor__label">VIEW</span>
+</div>
+
 <script>document.documentElement.classList.remove('no-js');</script>
 <script src="js/form.js"></script>
 <script src="js/script.js"></script>
@@ -455,6 +461,58 @@ fetch('js/build-time.json')
     console.error('❌ build-time.json 로드 실패', err);
     document.getElementById('last-build').textContent = '정보 없음';
   });
+  (() => {
+  const root = document.querySelector('.xcursor');
+  const label = root.querySelector('.xcursor__label');
+  if(!root) return;
+
+  const dot  = root.querySelector('.xcursor__dot');
+  const ring = root.querySelector('.xcursor__ring');
+
+  let x = window.innerWidth/2, y = window.innerHeight/2;
+  let tx = x, ty = y; // trailing
+
+  const lerp = (a,b,t)=>a+(b-a)*t;
+
+  const move = e => {
+    x = e.clientX; y = e.clientY;
+    dot.style.transform = `translate(${x}px, ${y}px)`;
+  };
+
+  // 부드러운 링 추종
+  const loop = () => {
+    tx = lerp(tx, x, 0.18);
+    ty = lerp(ty, y, 0.18);
+    ring.style.transform = `translate(${tx}px, ${ty}px)`;
+    label.style.transform = `translate(${tx}px, ${ty}px)`; // 라벨 위치 동기화
+    requestAnimationFrame(loop);
+  };
+
+  // hover 상태 토글 (버튼/링크/카드 등)
+  const hoverables = document.querySelectorAll('a, .btn, .chip');
+  hoverables.forEach(el=>{
+    el.addEventListener('mouseenter', ()=> root.classList.add('xcursor--hover'));
+    el.addEventListener('mouseleave', ()=> root.classList.remove('xcursor--hover'));
+  });
+
+  // view 상태: 카드/미디어 위일 때
+  const viewables = document.querySelectorAll('.card');;
+  viewables.forEach(el=>{
+    el.addEventListener('mouseenter', ()=> root.classList.add('xcursor--view'));
+    el.addEventListener('mouseleave', ()=> root.classList.remove('xcursor--view'));
+  });
+
+  // 클릭 피드백
+  window.addEventListener('mousedown', ()=> root.classList.add('xcursor--down'));
+  window.addEventListener('mouseup',   ()=> root.classList.remove('xcursor--down'));
+
+  // 시작
+  window.addEventListener('mousemove', move);
+  loop();
+
+  // OS 커서 숨김 (데스크톱에서만)
+  document.body.style.cursor = 'none';
+})();
 </script>
 </body>
 </html>
