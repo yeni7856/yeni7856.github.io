@@ -868,17 +868,16 @@ input:invalid, textarea:invalid { outline: none; }
    ================================ */
 
 :root{
-  --reveal-dur: .85s;
+  --reveal-dur: 0.85s;
   --reveal-ease: cubic-bezier(.2,.7,.2,1);
 }
 
 /* 2-1. hero (좌상단→확장) */
 .reveal-item[data-anim="hero"]{
   opacity: 0;
-  transform: scale(.94);
-  transform-origin: 0 0;                  /* 좌상단에서 펼침 */
-  transition: transform var(--reveal-dur) var(--reveal-ease),
-              opacity 1s ease;
+  transform: scale(0.9);
+  transform-origin: 0 0;
+  transition: transform var(--reveal-dur) var(--reveal-ease),opacity 2s ease;
 }
 .reveal-item[data-anim="hero"].is-in{
   opacity: 1;
@@ -895,7 +894,7 @@ input:invalid, textarea:invalid { outline: none; }
   opacity: 0;
   transform: scale(0.9); 
   transform-origin: 100% 100%;
-  transition: transform var(--reveal-dur) var(--reveal-ease),opacity 1s ease;
+  transition: transform var(--reveal-dur) var(--reveal-ease),opacity 2s ease;
 }
 .reveal-item[data-anim="side"].is-in {
   opacity: 1;
@@ -1171,18 +1170,17 @@ input:invalid, textarea:invalid { outline: none; }
   box-shadow:var(--mint-two);
 }
 .xcursor__ring{
-  width:26px; height:26px; border:1.5px solid var(--mint-two);
-  backdrop-filter:blur(2px);
+  width:26px; height:26px; border:2px solid var(--mint-two);
 }
 
 /* Hoverable targets 확대(버튼/링크/카드 등) */
 a,.btn,.chip,.card{cursor:none} /* 기본 포인터 숨김 */
-.xcursor--hover .xcursor__ring{width:44px; height:44px; border:1px solid var(--mint-two);}
+.xcursor--hover .xcursor__ring{width:44px; height:44px; border:1.8px solid var(--mint-two);}
 .xcursor--hover .xcursor__dot{opacity:.0}
 
 /* “VIEW” 상태 (이미지/카드 위) */
 .xcursor--view .xcursor__ring{
-  width:64px; height:64px; border-width:2px; border:1px solid var(--mint-two);
+  width:64px; height:64px; border-width:2px; border:1.8px solid var(--mint-two);
   background:radial-gradient(circle, #2dd49c7e, transparent 60%);
 }
 

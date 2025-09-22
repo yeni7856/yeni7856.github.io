@@ -461,6 +461,8 @@ fetch('js/build-time.json')
     console.error('❌ build-time.json 로드 실패', err);
     document.getElementById('last-build').textContent = '정보 없음';
   });
+
+  //커서
   (() => {
   const root = document.querySelector('.xcursor');
   const label = root.querySelector('.xcursor__label');
@@ -472,19 +474,42 @@ fetch('js/build-time.json')
   let x = window.innerWidth/2, y = window.innerHeight/2;
   let tx = x, ty = y; // trailing
 
+  // 상태 플래그
+  let isMouseDown = false;
+  let isSelecting = false;
+
   const lerp = (a,b,t)=>a+(b-a)*t;
 
   const move = e => {
     x = e.clientX; y = e.clientY;
-    dot.style.transform = `translate(${x}px, ${y}px)`;
+    dot.style.left = x + 'px';
+    dot.style.top  = y + 'px';
   };
+
+  // selection 상태 감지
+  document.addEventListener('mousedown', () => { 
+    isMouseDown = true; 
+    isSelecting = false; 
+  });
+  document.addEventListener('mouseup', () => { 
+    isMouseDown = false; 
+    isSelecting = false; 
+  });
+  document.addEventListener('selectionchange', () => {
+    const sel = window.getSelection?.();
+    // 마우스 누르고 있고, 실제로 뭔가 선택돼 있으면 선택 중
+    isSelecting = !!(isMouseDown && sel && sel.rangeCount > 0 && !sel.isCollapsed);
+  });
 
   // 부드러운 링 추종
   const loop = () => {
-    tx = lerp(tx, x, 0.18);
-    ty = lerp(ty, y, 0.18);
-    ring.style.transform = `translate(${tx}px, ${ty}px)`;
-    label.style.transform = `translate(${tx}px, ${ty}px)`; // 라벨 위치 동기화
+    const t = isSelecting ? 1 : 0.18;
+    tx = lerp(tx, x, t);
+    ty = lerp(ty, y, t);
+    ring.style.left  = tx + 'px';
+    ring.style.top   = ty + 'px';
+    label.style.left = tx + 'px';
+    label.style.top  = ty + 'px';
     requestAnimationFrame(loop);
   };
 
