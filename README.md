@@ -25,9 +25,3 @@ https://yeni7856.github.io/
 - Video and image project detail views
 - Career, skills, language, and certification information
 - Responsive desktop and mobile layout
-
-## Local Development
-
-```bash
-npm install
-npm run dev
