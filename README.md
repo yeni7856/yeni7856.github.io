@@ -1,26 +1,33 @@
-# yeni7856.github.io
+# Yeeun Kwak Portfolio V2.0
 
-🎨Yeeun Kwak's Portfolio Site  
-A UI/UX designer who creates immersive, visually-driven user experiences.  
-This site showcases selected works built with a balance of design and development.
+Yeeun Kwak's interactive UI/UX portfolio website.
 
-## 🔗 Live Site  
-👉 https://yeni7856.github.io/
+This portfolio presents selected work across game UI, web services, mobile applications, dashboards, XR, and UI implementation.
 
-## 📁 Project Structure  
-- `index.html`: Main portfolio landing page  
-- `css/`, `js/`, `img/`: Front-end assets (styles, scripts, images)  
-- `pdf/`: Portfolio PDFs  
-- `.github/`, `deploy.yml`: GitHub Actions for deployment  
-- `package.json`, `manifest.json`: Node.js project configuration
+## Live Site
 
-## ⚙️ Built With  
-- HTML5 / CSS3 / JavaScript  
-- Node.js  
-- GitHub Pages  
-- VS Code
+https://yeni7856.github.io/
 
-## 📌 Note  
-This project uses Node.js for build automation and future expansion.  
-Deployed via GitHub Pages using a custom workflow.
+## Built With
 
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- GitHub Actions
+- GitHub Pages
+
+## Key Features
+
+- Interactive 3D project carousel
+- Category-based project filtering
+- Responsive project gallery
+- Video and image project detail views
+- Career, skills, language, and certification information
+- Responsive desktop and mobile layout
+
+## Local Development
+
+```bash
+npm install
+npm run dev

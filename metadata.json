@@ -1,0 +1,9 @@
+{
+  "name": "YeeunUI",
+  "description": "Portfolio",
+  "icons": {
+    "favicon": "assets/icons/favicon-1.png",
+    "apple": "assets/icons/icon-192.png",
+    "android": "assets/icons/icon-512.png"
+  }
+}
