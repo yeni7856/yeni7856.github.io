@@ -60,7 +60,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = ({ isOpen, onClose, titl
           </h2>
           <div className="flex items-center gap-4 mt-12">
             <div className="h-[1px] w-24 bg-[#28CC9E]/50" />
-            <span className="text-white/50 font-mono text-[10px] tracking-[0.5em] uppercase">System Information // Root</span>
+            <span className="text-white/50 font-mono text-[10px] tracking-[0.5em] uppercase">YEEU KWAK UIUX</span>
           </div>
         </header>
         

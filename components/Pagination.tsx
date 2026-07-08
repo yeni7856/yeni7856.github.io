@@ -8,7 +8,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ total, current, onChange }) => {
   return (
-    <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 flex items-end gap-1 sm:gap-1.5 pointer-events-auto mix-blend-difference">
+    <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 flex items-end gap-0.2 sm:gap-1.5 pointer-events-auto mix-blend-difference">
       {Array.from({ length: total }).map((_, i) => (
         <button
           key={i}
