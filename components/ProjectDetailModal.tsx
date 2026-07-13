@@ -658,13 +658,13 @@ const PinchZoomImage: React.FC<PinchZoomImageProps> = ({
   }, []);
 
   return (
-    <div
+     <div
       ref={containerRef}
       className="relative w-full overflow-hidden bg-black"
       style={{
         /*
           기본 상태:
-          한 손가락 세로 스크롤 허용
+          이미지 위에서도 모달 세로 스크롤 허용
 
           확대 상태:
           브라우저 스크롤을 막고 이미지 이동만 허용
@@ -673,25 +673,30 @@ const PinchZoomImage: React.FC<PinchZoomImageProps> = ({
           transform.scale > 1.01
             ? 'none'
             : 'pan-y',
-        overscrollBehavior: 'contain',
+
+        /*
+          contain을 사용하면 이미지 위에서
+          부모 모달로 스크롤이 전달되지 않을 수 있음
+        */
+        overscrollBehavior: 'auto',
       }}
     >
-      <img
-        ref={imageRef}
-        src={src}
-        alt={alt}
-        loading={loading}
-        draggable={false}
-        className="block h-auto w-full select-none object-cover will-change-transform"
-        style={{
-          transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`,
-          transformOrigin: 'center center',
-          transition: isInteracting
-            ? 'none'
-            : 'transform 180ms ease-out',
-        }}
-      />
-    </div>
+    <img
+      ref={imageRef}
+      src={src}
+      alt={alt}
+      loading={loading}
+      draggable={false}
+      className="block h-auto w-full select-none object-cover will-change-transform pointer-events-none"
+      style={{
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`,
+        transformOrigin: 'center center',
+        transition: isInteracting
+          ? 'none'
+          : 'transform 180ms ease-out',
+      }}
+    />
+  </div>
   );
 };
 
@@ -802,18 +807,9 @@ const ProjectDetailModal: React.FC<
           onClick={onClose}
           aria-label="프로젝트 상세 닫기"
           className="fixed top-8 z-[400] p-3 bg-[#28CC9E]/60 backdrop-blur-md border border-[#28CC9E]/10 hover:bg-[#28CC9E] text-white hover:text-black transition-all rounded-full group"
-          style={{
-            left: isMobile
-              ? 'auto'
-              : 'calc(50% + 30vw + 16px)',
-
-            right: isMobile
-              ? '16px'
-              : 'auto',
-
-            top: isMobile
-              ? '16px'
-              : '32px',
+          style={{ left: isMobile ? 'auto' : 'calc(50% + 30vw + 16px)', 
+            right: isMobile ? '16px' : 'auto',
+            top: isMobile ? '16px' : '32px',
           }}
         >
           <X
@@ -836,16 +832,7 @@ const ProjectDetailModal: React.FC<
           }}
           className="fixed flex items-center gap-3 z-[400] px-3 py-2 text-white hover:text-[#28CC9E] transition-all group"
           style={
-            isMobile
-              ? {
-                  top: '16px',
-                  left: '16px',
-                }
-              : {
-                  top: '56px',
-                  right:
-                    'calc(50% + 32vw + 16px)',
-                }
+            isMobile ? { top: '16px', left: '16px',} : { top: '56px', right: 'calc(50% + 32vw + 16px)',}
           }
         >
           <span className="text-[8px] lg:text-[14.5px] tracking-[0.12em] uppercase font-bold whitespace-nowrap">
@@ -862,7 +849,8 @@ const ProjectDetailModal: React.FC<
       {/* 배경 오버레이 */}
       <div
         ref={scrollRef}
-        className={`fixed inset-0 z-[300] bg-black/40 backdrop-blur-sm transition-opacity duration-700 flex items-start justify-center overflow-y-auto custom-scrollbar ${
+        className={`fixed inset-0 z-[300] bg-black/40 transition-opacity duration-700 flex items-start justify-center overflow-y-auto custom-scrollbar
+          ${
           isOpen
             ? 'opacity-100'
             : 'opacity-0 pointer-events-none'
@@ -884,7 +872,7 @@ const ProjectDetailModal: React.FC<
             <div className="flex flex-col w-full">
               {/* 설명 */}
               {displayProject.description && (
-                <section className="w-full mb-40 px-6 py-12 sm:px-10 md:px-16 md:py-16 bg-[#080808] border-b border-white/10">
+                <section className="w-full mb-20 px-6 py-12 sm:px-10 md:px-16 md:py-16 bg-[#080808] border-b border-white/10">
                   <div className="flex items-center gap-3 mb-5">
                     <span className="text-[#28CC9E] font-mono text-[11px] md:text-[13px] tracking-[0.2em] font-bold uppercase">
                       {
@@ -923,7 +911,7 @@ const ProjectDetailModal: React.FC<
                     playsInline
                     controls
                     preload="metadata"
-                    className="w-full h-auto mb-40"
+                    className="w-full h-auto mb-20"
                     onMouseEnter={() =>
                       document.documentElement.classList.add(
                         'video-hover',

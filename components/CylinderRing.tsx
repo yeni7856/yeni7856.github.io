@@ -11,12 +11,22 @@ interface CylinderRingProps {
   startAnimation: boolean;
   onIndexChange?: (index: number) => void;
   onProjectClick: (project: Project) => void;
+  isPaused?: boolean; //추가
 }
 
-const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projects, startAnimation, onIndexChange, onProjectClick }, ref) => {
+const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projects, startAnimation, onIndexChange, onProjectClick, isPaused }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+
+   // 추가: isPaused를 ref로도 들고 있어서 loop()의 클로저 안에서
+  // 항상 최신값을 읽을 수 있도록 함 (loop는 useEffect가 처음 실행될 때
+  // 만들어진 클로저라 props 변화를 직접 못 읽음)
+  const isPausedRef = useRef(false);
+    useEffect(() => {
+      isPausedRef.current = !!isPaused;
+    }, [isPaused]);
 
   // 1. 디바이스 해상도별 미디어 쿼리 상태 관리
   const [screenSize, setScreenSize] = useState(() => {
@@ -109,6 +119,12 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
   useEffect(() => {
     const loop = (time: number) => {
       const s = state.current;
+
+      // 모달이 열려 화면에 안 보일 때는 무거운 연산/DOM 갱신을 건너뜀
+      if (isPausedRef.current) {
+        rAf.current = requestAnimationFrame((t) => loop(t));
+        return;
+      }
 
       if (startAnimation) {
         if (s.introStartTime === 0) s.introStartTime = time;

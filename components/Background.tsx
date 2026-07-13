@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { Project } from '../types';
 
 interface BackgroundProps {
-  activeProject?: Project; 
+  activeProject?: Project;
+  isPaused?: boolean;
 }
 
-const Background: React.FC<BackgroundProps> = ({ activeProject }) => {
+const Background: React.FC<BackgroundProps> = ({ activeProject, isPaused }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

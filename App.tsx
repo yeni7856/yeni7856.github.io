@@ -29,6 +29,7 @@ const App: React.FC = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const isAnyModalOpen = isProjectsOpen || isAboutOpen || isContactOpen || isDetailOpen;
 
   const cylinderRef = useRef<CylinderRingHandle>(null);
 
@@ -74,7 +75,7 @@ const App: React.FC = () => {
   return (
     <div className="relative w-screen h-screen bg-black overflow-hidden cursor-none">
       {/* Layer 0: Background */}
-      <Background activeProject={projects[currentIndex]} />
+      <Background activeProject={projects[currentIndex]} isPaused={isAnyModalOpen} />
       
       {/* Layer 9999: Cursor */}
       <CustomCursor />
@@ -118,13 +119,14 @@ const App: React.FC = () => {
         )}
         
         {/* 3D Scene */}
-        <main className={`w-full h-full relative transition-transform duration-1000 ${isProjectsOpen || isAboutOpen || isContactOpen || isSideMenuOpen || isDetailOpen ? 'scale-95 blur-md' : 'scale-100 blur-0'}`}>
+        <main className={`w-full h-full relative transition-transform duration-1000 ${isDetailOpen ? 'scale-95 blur-md' : 'scale-100 blur-0'}`}>
           <CylinderRing 
             ref={cylinderRef}
             projects={mainProjects}
             startAnimation={startAnimation} 
             onIndexChange={setCurrentIndex}
             onProjectClick={openProjectDetail}
+            isPaused={isAnyModalOpen}
           />
         </main>
       </div>
