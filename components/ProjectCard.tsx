@@ -77,8 +77,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, width, height, trans
               <p className="text-[10px] sm:text-[12px] md:text-[15px] tracking-[0.1em] text-[#28CC9E] uppercase font-bold">
                 {project.category}
               </p>
-              <span className="text-white/30 text-[10px] sm:text-[12px]">|</span>
-              <span className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.1em] text-white/70">{project.id.toString().padStart(2, '0')}</span>
+              {/* <span className="text-white/30 text-[10px] sm:text-[12px]">|</span>
+              <span className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.1em] text-white/70">{project.id.toString().padStart(2, '0')}</span> */}
               <span className="text-white/30 text-[10px] sm:text-[12px]">|</span>
               <span className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.1em] text-white/70">{project.year}</span>
             </div>
