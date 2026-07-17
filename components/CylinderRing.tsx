@@ -70,7 +70,7 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
   const radius = Math.round(((CARD_WIDTH + GAP) * count) / (2 * Math.PI));
 
   // 5. 원통 전체의 기본 기울기 패러미터
-  const ty = isMobile ? -30 : isTablet ? -190 : -300;
+  const ty = isMobile ? -30 : isTablet ? -190 : -310;
   const rx = isMobile ? 0 : isTablet ? -12 : -13;
   const rz = isMobile ? 0 : isTablet ? 0 : 0;
 

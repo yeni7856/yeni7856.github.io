@@ -139,7 +139,7 @@ const AboutContent: React.FC = () => {
             {/* 자기소개 */}
             <div className="max-w-[38em] space-y-6 sm:space-y-7 text-white/70 text-sm md:text-base leading-relaxed font-light break-words">
               <p>
-                안녕하세요. 디자인과 기술을 함께 고민하는 UI/UX 디자이너 곽예은입니다.
+                안녕하세요. 디자인과 기술을 함께 고민하는 UI/UX 곽예은입니다.
                 <br />
                 반응형 웹·앱과 내부 시스템 UI를 설계하고, HTML/CSS 퍼블리싱까지 직접 수행해왔습니다.
                 기획 의도를 실제로 구현할 수 있는 화면 구조로 구체화하는 데 강점이 있습니다.

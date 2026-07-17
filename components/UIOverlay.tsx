@@ -16,7 +16,7 @@ const UIOverlay: React.FC<UIOverlayProps> = ({ onOpenProjects, onOpenAbout, onOp
       <header className="flex justify-between items-start">
         <div className="pointer-events-auto cursor-pointer group" onClick={onGoHome}>
           <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-white mix-blend-difference">
-            YEEUN UI<span>.</span>
+            YEEUN<span>.</span>
           </h1>
           <div className="h-[2px] w-0 group-hover:w-full bg-[#28CC9E] transition-all duration-500 ease-out mt-1"></div>
         </div>

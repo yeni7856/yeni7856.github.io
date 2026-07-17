@@ -849,7 +849,7 @@ const ProjectDetailModal: React.FC<
       {/* 배경 오버레이 */}
       <div
         ref={scrollRef}
-        className={`fixed inset-0 z-[300] bg-black/40 transition-opacity duration-700 flex items-start justify-center overflow-y-auto custom-scrollbar
+        className={`fixed inset-0 z-[300] bg-black/40 backdrop-blur-md transition-opacity duration-700 flex items-start justify-center overflow-y-auto custom-scrollbar
           ${
           isOpen
             ? 'opacity-100'
@@ -859,7 +859,7 @@ const ProjectDetailModal: React.FC<
       >
         {/* 콘텐츠 */}
         <div
-          className={`w-full md:w-[60vw] md:my-40 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] ${
+          className={`w-full md:w-[60vw] md:my-40 bg-[#080808] shadow-[0_30px_100px_rgba(0,0,0,0.65)] transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] ${
             isOpen
               ? 'translate-y-0'
               : 'translate-y-full'
