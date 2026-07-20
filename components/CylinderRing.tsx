@@ -20,7 +20,7 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
   const [activeIndex, setActiveIndex] = useState(0);
 
 
-   // 추가: isPaused를 ref로도 들고 있어서 loop()의 클로저 안에서
+  // 추가: isPaused를 ref로도 들고 있어서 loop()의 클로저 안에서
   // 항상 최신값을 읽을 수 있도록 함 (loop는 useEffect가 처음 실행될 때
   // 만들어진 클로저라 props 변화를 직접 못 읽음)
   const isPausedRef = useRef(false);
@@ -84,7 +84,8 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
     targetIndex: -1,
     introProgress: 0,
     introStartTime: 0,
-    lastReportedIndex: -1, // ★ 수정: 0 → -1. 초기 인덱스 0도 반드시 통보되도록
+    introCompleted: false, // 추가: 인트로 완료 여부
+    lastReportedIndex: -1, // 수정: 0 → -1. 초기 인덱스 0도 반드시 통보되도록
   });
 
   const rAf = useRef<number | null>(null);
@@ -92,17 +93,11 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
   useImperativeHandle(ref, () => ({
     scrollTo: (index: number) => {
       const s = state.current;
-      const currentPos = -s.currentAngle / sliceAngle;
 
-      let distance = index - (currentPos % count);
-      if (distance > count / 2) distance -= count;
-      if (distance < -count / 2) distance += count;
+      const normalizedIndex = ((index % count) + count) % count;
 
-      const targetPos = currentPos + distance;
-      const targetAngle = -targetPos * sliceAngle;
-      s.targetIndex = index;
-      const angleDiff = targetAngle - s.currentAngle;
-      // s.velocity = angleDiff * 0.12;
+      s.targetIndex = normalizedIndex;
+      s.velocity = 0;
     }
   }));
 
@@ -126,7 +121,7 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
         return;
       }
 
-      if (startAnimation) {
+      if (startAnimation && !s.introCompleted) {
         if (s.introStartTime === 0) s.introStartTime = time;
         const elapsed = time - s.introStartTime;
         const duration = 3500;
@@ -134,13 +129,17 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
 
         if (s.introProgress < 1) {
           s.currentAngle = (1 - easeOutCubic(s.introProgress)) * 720;
-        } else if (s.introProgress === 1 && s.introStartTime !== -1) {
+        } else {
           s.currentAngle = 0;
+          s.velocity = 0;
+          s.introProgress = 1;
+          s.introCompleted = true;
           s.introStartTime = -1;
         }
       }
 
-      if (s.introProgress > 0.6) {
+      // 수정: 인트로 애니메이션이 완전히 끝난 뒤에만 일반 회전 실행
+      if (s.introCompleted) {
           if (!s.isDragging) {
               if (s.targetIndex !== -1) {
                   const currentPos = -s.currentAngle / sliceAngle;
@@ -149,9 +148,12 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
                   const targetAngle = -targetPos * sliceAngle;
                   const dist = targetAngle - s.currentAngle;
 
-                  s.velocity += dist * 0.15;
-                  s.velocity *= 0.6;
-                  if (Math.abs(dist) < 0.1 && Math.abs(s.velocity) < 0.1) {
+                  // 수정: 목표 위치에서 자연스럽게 감속하도록 수치 조절
+                  s.velocity += dist * 0.08;
+                  s.velocity *= 0.72;
+
+                  // 수정: 거의 멈춘 뒤에만 정확한 위치로 보정
+                  if (Math.abs(dist) < 0.015 && Math.abs(s.velocity) < 0.008) {
                       s.velocity = 0;
                       s.currentAngle = targetAngle;
                       s.targetIndex = -1;
@@ -248,13 +250,13 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
 
   // 8. 마우스 및 터치 인터랙션 이벤트 핸들러
   const handleDown = (clientX: number) => {
-    if (state.current.introProgress < 0.8) return;
+    if (!state.current.introCompleted) return;
     state.current.isDragging = true;
     state.current.lastX = clientX;
     state.current.targetIndex = -1;
   };
 
-  // ★ 수정: 모바일/데스크탑 모두 가로(X) 델타 기준으로 통일
+  // 수정: 모바일/데스크탑 모두 가로(X) 델타 기준으로 통일
   const handleMove = (clientX: number, clientY?: number) => {
     if (!state.current.isDragging) return;
     const s = state.current;
@@ -272,13 +274,13 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
   const handleUp = () => { state.current.isDragging = false; };
 
   const handleWheel = (e: React.WheelEvent) => {
-    if (state.current.isDragging) return;
+    if (state.current.isDragging || !state.current.introCompleted) return;
     const delta = e.deltaY;
     state.current.targetIndex = -1;
     state.current.velocity -= delta * SCROLL_SENSITIVITY;
   };
 
-  // ★ 추가: touchmove를 passive: false로 네이티브 등록해서 preventDefault가 확실히 먹히게 함
+  // 추가: touchmove를 passive: false로 네이티브 등록해서 preventDefault가 확실히 먹히게 함
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -300,8 +302,8 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
       className="w-full h-full flex items-center justify-center overflow-hidden perspective-container select-none relative bg-black"
       style={{
         perspective: '2000px',
-        touchAction: 'none',        // ★ 추가: 브라우저 기본 스크롤/줌 제스처 차단
-        overscrollBehavior: 'none', // ★ 추가: 당겨서 새로고침/바운스 방지
+        touchAction: 'none',        // 추가: 브라우저 기본 스크롤/줌 제스처 차단
+        overscrollBehavior: 'none', // 추가: 당겨서 새로고침/바운스 방지
         cursor: (isMobile || isTablet) ? 'default' : 'none'
       }}
       onMouseDown={(e) => handleDown(e.clientX)}
@@ -309,7 +311,7 @@ const CylinderRing = forwardRef<CylinderRingHandle, CylinderRingProps>(({ projec
       onMouseUp={handleUp}
       onMouseLeave={handleUp}
       onTouchStart={(e) => {
-        if (state.current.introProgress < 0.8) return; // ★ 수정: 인트로 중 조작 잠금 (마우스와 동일하게)
+        if (!state.current.introCompleted) return; // 수정: 인트로 중 조작 잠금
         state.current.isDragging = true;
         state.current.lastX = e.touches[0].clientX;
         state.current.lastY = e.touches[0].clientY;

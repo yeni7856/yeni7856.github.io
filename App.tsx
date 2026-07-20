@@ -18,9 +18,25 @@ import ContactContent from './components/Contact';
 
 
 const App: React.FC = () => {
+  const getInitialProjectIndex = () => {
+  const params = new URLSearchParams(window.location.search);
+  const view = params.get('view');
+
+  switch (view) {
+    case 'game':
+      return 1; // mainProjects에서 대표 게임 프로젝트 위치
+    case 'XR':
+      return 5; // mainProjects에서 대표 XR 프로젝트 위치
+    default:
+      return 0;
+  }
+};
+
   const [loaded, setLoaded] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const initialProjectIndex = getInitialProjectIndex();   //초기값 변경
+  const [currentIndex, setCurrentIndex] = useState(initialProjectIndex);
   
   // Modal states
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
@@ -40,6 +56,17 @@ const App: React.FC = () => {
     }, 1500); 
     return () => clearTimeout(timer);
   }, []);
+
+   useEffect(() => {
+    if (!startAnimation) return;
+
+    const timer = setTimeout(() => {
+      cylinderRef.current?.scrollTo(initialProjectIndex);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [startAnimation, initialProjectIndex]);
+
 
   const handleProjectChange = (index: number) => {
     if (cylinderRef.current) {
@@ -75,7 +102,7 @@ const App: React.FC = () => {
   return (
     <div className="relative w-screen h-screen bg-black overflow-hidden cursor-none">
       {/* Layer 0: Background */}
-      <Background activeProject={projects[currentIndex]} isPaused={isAnyModalOpen} />
+      <Background  activeProject={mainProjects[currentIndex]} isPaused={isAnyModalOpen} />
       
       {/* Layer 9999: Cursor */}
       <CustomCursor />
@@ -112,7 +139,7 @@ const App: React.FC = () => {
         {/* Pagination */}
         {!isProjectsOpen && !isAboutOpen && !isContactOpen && !isDetailOpen && (
           <Pagination 
-            total={projects.length} 
+            total={mainProjects.length} 
             current={currentIndex} 
             onChange={handleProjectChange} 
           />
