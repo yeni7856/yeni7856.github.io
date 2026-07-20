@@ -20,22 +20,24 @@ import ContactContent from './components/Contact';
 const App: React.FC = () => {
   const getInitialProjectIndex = () => {
   const params = new URLSearchParams(window.location.search);
-  const view = params.get('view');
+  const view = params.get('view')?.toLowerCase();
 
   switch (view) {
     case 'game':
       return 1; // mainProjects에서 대표 게임 프로젝트 위치
-    case 'XR':
+    case 'xr':
       return 5; // mainProjects에서 대표 XR 프로젝트 위치
     default:
       return 0;
   }
 };
 
+  const initialProjectIndexRef = useRef(getInitialProjectIndex()); //초기값 설정
+  const initialProjectIndex = initialProjectIndexRef.current;
+
   const [loaded, setLoaded] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
 
-  const initialProjectIndex = getInitialProjectIndex();   //초기값 변경
   const [currentIndex, setCurrentIndex] = useState(initialProjectIndex);
   
   // Modal states
@@ -57,15 +59,16 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-   useEffect(() => {
-    if (!startAnimation) return;
+  useEffect(() => {
+  if (!startAnimation) return;
 
-    const timer = setTimeout(() => {
-      cylinderRef.current?.scrollTo(initialProjectIndex);
-    }, 300);
+  const timer = setTimeout(() => {
+    cylinderRef.current?.scrollTo(initialProjectIndex);
+    setCurrentIndex(initialProjectIndex);
+  }, 3000);
 
-    return () => clearTimeout(timer);
-  }, [startAnimation, initialProjectIndex]);
+  return () => clearTimeout(timer);
+}, [startAnimation, initialProjectIndex]);
 
 
   const handleProjectChange = (index: number) => {
