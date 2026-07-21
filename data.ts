@@ -18,7 +18,7 @@ export const projects: Project[] = [
     category: "GAME",
     year: "2025",
     imageUrl: "/assets/portfolio/1.Game/Subculture(UI).png",
-    description:"SUBCULTURE 1인칭 FPS로 캐릭터, 무기를 선택하여 결투",
+    description:"SUBCULTURE 캐릭터 수집 1인칭 FPS로 캐릭터, 무기를 선택하여 결투",
     images: ["/assets/portfolio/1.Game/Subculture(UI)-portfolio.png"],
     importance: 1,
   },
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     year: "2025",
     imageUrl: "/assets/portfolio/3.대시보드/ABS_ITAM 커버.png",
     description:"내부 자산관리시스템",
-    images: ["/assets/portfolio/3.대시보드/ABS-ITAM 자산관리시스템_디자인스타일가이드.png"],
+    images: ["/assets/portfolio/3.대시보드/ABS-ITAM 자산관리시스템_스타일가이드+디자인.png"],
     importance: 3,
   },
   
