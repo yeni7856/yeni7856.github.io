@@ -28,8 +28,8 @@ export const projects: Project[] = [
     category: "GAME",
     year: "2025",
     imageUrl: "/assets/portfolio/1.Game/RPG(UI).png",
-    description:"RPG UI 디자인 하늘 전장에서 싸우는 여신들의 주제",
-    images: ["/assets/portfolio/1.Game/RPGUI_2.png"],
+    description:"RPG UI 디자인 하늘 전장에서 싸우는 여신들 리뉴얼작업중",
+    images: ["/assets/portfolio/1.Game/RPGUI(리뉴얼작업중).png"],
     importance: 1,
   },
    {
