@@ -898,6 +898,31 @@ const ProjectDetailModal: React.FC<
                       displayProject.description
                     }
                   </p>
+                  {/* 홈페이지 버튼 */}
+                  {displayProject.websiteUrl && (
+                    <div className="mt-10">
+                      <a
+                        href={displayProject.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          inline-flex items-center gap-2
+                          px-7 py-3
+                          border border-[#28CC9E]
+                          text-[#28CC9E]
+                          text-sm font-semibold
+                          tracking-[0.18em]
+                          uppercase
+                          transition-all duration-300
+                          hover:bg-[#28CC9E]
+                          hover:text-black
+                        "
+                      >
+                        홈페이지 보기
+                        <span>↗</span>
+                      </a>
+                    </div>
+                  )}
                 </section>
               )}
 

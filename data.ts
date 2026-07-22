@@ -41,6 +41,7 @@ export const projects: Project[] = [
     description:"4:4 협동 FPS UI ",
     images: ["/assets/portfolio/1.Game/FPSUI.png"],
     importance: 1,
+    showInMain: false,
   },
 
   // 2행 — 어두운 게임 비주얼에서 레드 계열로 연결
@@ -120,10 +121,11 @@ export const projects: Project[] = [
     category: "WEB",
     year: "2026",
     imageUrl: "/assets/portfolio/5.Web/저출산위원회-커버.png",
-    description:"공공기관 홈페이지 개선 방향",
+    description:"공공기관 홈페이지 개선 방향 반응형작업은 별도로 안되어있습니다.",
+    websiteUrl:
+    'https://yeni7856.github.io/Public-institution-website/',
     images: ["/assets/portfolio/5.Web/저출산대책위원회-portfolio.png"],
     importance: 1,
-    showInMain: false,
   },
   // 4행 — 화이트·블루 실무 대시보드
   {

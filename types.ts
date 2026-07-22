@@ -11,4 +11,5 @@ export interface Project {
   description?: string;
   tools?: string[];
   showInMain?: boolean;
+  websiteUrl?: string;
 }
