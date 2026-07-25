@@ -41,7 +41,6 @@ export const projects: Project[] = [
     description:"4:4 협동 FPS UI ",
     images: ["/assets/portfolio/1.Game/FPSUI.png"],
     importance: 1,
-    showInMain: false,
   },
 
   // 2행 — 어두운 게임 비주얼에서 레드 계열로 연결
@@ -102,7 +101,6 @@ export const projects: Project[] = [
     description:"B2B 농수산물 도매시장 직송 배달 앱 (실시간 가격 측정, 가계부, 알림)",
     images: ["/assets/portfolio/2.App/야채팜-portfolio.png"],
     importance: 3,
-    showInMain: false,
   },
   {
     id: 5,
@@ -187,4 +185,37 @@ export const projects: Project[] = [
   },
 ];
 
-export const mainProjects = projects.filter((p) => p.showInMain !== false);
+// export const mainProjects = projects.filter((p) => p.showInMain !== false);
+const getProjectsByIds = (ids: number[]): Project[] => {
+  return ids
+    .map((id) =>
+      projects.find((project) => project.id === id)
+    )
+    .filter(
+      (project): project is Project =>
+        project !== undefined
+    );
+};
+
+// 일반 웹·앱 UI/UX 지원용
+export const productMainProjects =
+  getProjectsByIds([
+    1,  // JAPAN MOBILE
+    5,  // Dashboard
+    12, // Public institution WEB
+    2,  // Banking App
+    8,  // Smart Farm
+    3,  //SUBCULTURE UI
+    4,  // AETHERIA UI System
+  ]);
+
+// 게임 UI·XR 지원용
+export const gameMainProjects =
+  getProjectsByIds([
+    3, // SUBCULTURE UI
+    4, // AETHERIA UI System
+    15, //FPS
+    7, // XR GAME
+    6, // Auto Chess
+    1, // JAPAN MOBILE
+  ]);

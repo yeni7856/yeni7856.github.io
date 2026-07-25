@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import CylinderRing, { CylinderRingHandle } from './components/CylinderRing';
 import UIOverlay from './components/UIOverlay';
@@ -10,7 +9,7 @@ import ProjectDetailModal from './components/ProjectDetailModal';
 import FullscreenModal from './components/FullscreenModal';
 import AboutContent from './components/AboutContent';
 import Background from './components/Background';
-import { projects, mainProjects } from './data';
+import { productMainProjects, gameMainProjects } from './data';
 import { Project } from './types';
 import { AnimatePresence } from 'framer-motion';
 import Preloader from './components/Preloader';
@@ -18,19 +17,36 @@ import ContactContent from './components/Contact';
 
 
 const App: React.FC = () => {
-  const getInitialProjectIndex = () => {
   const params = new URLSearchParams(window.location.search);
   const view = params.get('view')?.toLowerCase();
 
-  switch (view) {
-    case 'game':
-      return 1; // mainProjects에서 대표 게임 프로젝트 위치
-    case 'xr':
-      return 5; // mainProjects에서 대표 XR 프로젝트 위치
-    default:
-      return 0;
-  }
-};
+  const mainProjects = view === 'game' || view === 'xr' ? gameMainProjects : productMainProjects;
+
+  // 처음 보여줄 프로젝트 위치
+  const getInitialProjectIndex = () => {
+    if (view === 'xr') {
+      const xrProjectIndex =
+        mainProjects.findIndex(
+          (project) =>
+            project.category === 'XR',
+        );
+
+      return xrProjectIndex >= 0
+        ? xrProjectIndex
+        : 0;
+    }
+    return 0;
+
+    // switch (view) {
+    //   case 'game':
+    //     return 1; // mainProjects에서 대표 게임 프로젝트 위치
+    //   case 'xr':
+    //     return 5; // mainProjects에서 대표 XR 프로젝트 위치
+    //   default:
+    //     return 0;
+    // }
+  };
+
 
   const initialProjectIndexRef = useRef(getInitialProjectIndex()); //초기값 설정
   const initialProjectIndex = initialProjectIndexRef.current;
@@ -105,7 +121,7 @@ const App: React.FC = () => {
   return (
     <div className="relative w-screen h-screen bg-black overflow-hidden cursor-none">
       {/* Layer 0: Background */}
-      <Background  activeProject={mainProjects[currentIndex]} isPaused={isAnyModalOpen} />
+      <Background  activeProject={mainProjects[currentIndex] ?? mainProjects[0]} isPaused={isAnyModalOpen} />
       
       {/* Layer 9999: Cursor */}
       <CustomCursor />
@@ -134,8 +150,8 @@ const App: React.FC = () => {
           onOpenSideMenu={() => setIsSideMenuOpen(true)}
           onGoHome={() => {
             handleNavigation('HOME');
-            setCurrentIndex(0);
-            cylinderRef.current?.scrollTo(0);
+            setCurrentIndex(initialProjectIndex); //프로젝트복귀
+            cylinderRef.current?.scrollTo(initialProjectIndex);
           }}
         />
         
