@@ -214,8 +214,7 @@ export const gameMainProjects =
   getProjectsByIds([
     3, // SUBCULTURE UI
     4, // AETHERIA UI System
-    15, //FPS
-    7, // XR GAME
     6, // Auto Chess
-    1, // JAPAN MOBILE
+    7, // XR GAME
+    15, //FPS
   ]);
